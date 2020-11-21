@@ -18,6 +18,9 @@ mongoose.connect(
     }
 );
 
+console.log('test');
+
+
 app.post("/insert", async (req, res) => {
     const foodName = req.body.foodName;
     const days = req.body.days;
