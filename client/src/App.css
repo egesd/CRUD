@@ -6,6 +6,8 @@
     justify-content: center;
     background-color: #ffb83d;
     height: 100vh;
+    font-family: 'Rock Salt', cursive;
+
 }
 
 input {
@@ -13,6 +15,17 @@ input {
     height: 30px;
     font-size: 20px;
     margin-bottom: 2rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease-in;
+    outline: 1px transparent;
+}
+
+input:hover {
+    outline: 1px solid #502958;
+}
+
+input:focus {
+    outline-color: #502958;
 }
 
 label {
@@ -37,6 +50,8 @@ button {
     border-radius: 6px;
     display: inline-block;
     transition: all 0.3s ease 0s;
+    font-size: 14px;
+    font-family: 'Rock Salt', cursive;
 }
 
 button:hover {
@@ -48,3 +63,5 @@ button:hover {
     -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
     transition: all 0.3s ease 0s;
 }
+
+
