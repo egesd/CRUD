@@ -5,7 +5,6 @@
     align-items: center;
     justify-content: center;
     background-color: #ffb83d;
-    height: 100vh;
     font-family: 'Rock Salt', cursive;
 
 }
@@ -62,6 +61,11 @@ button:hover {
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
     transition: all 0.3s ease 0s;
+}
+
+.food {
+    padding: 1rem;
+    border: 1px solid #B81F77;
 }
 
 
