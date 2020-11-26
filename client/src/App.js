@@ -25,6 +25,10 @@ function App() {
         Axios.put('http://localhost:3001/update', {id : id, newFoodName: newFoodName})
     }
 
+    const deleteFood = (id) => {
+        Axios.delete(`http://localhost:3001/delete/${id}`)
+    }
+
     return (
         <div className="App">
             <h1> CRUD App with MERN</h1>
@@ -47,10 +51,10 @@ function App() {
             <button onClick={addToList}>Add To List</button>
 
             <h1>Food list</h1>
-
+            <div className="foodlist">
             {foodList.map((val, key) => {
                 return (
-                    <div key={key} className="food">
+                    <div key={key} className="foodlist__single">
                         <h1> {val.foodName}</h1> <h1> {val.daysSinceIAte}</h1>
                         <input
                             type="text"
@@ -60,10 +64,11 @@ function App() {
                             }}
                         />
                         <button onClick={() => updateFood(val._id)}>Update</button>
-                        <button>Delete</button>
+                        <button onClick={() => deleteFood(val._id)}>Delete</button>
                     </div>
                 );
             })}
+            </div>
         </div>
     );
 }

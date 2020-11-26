@@ -56,16 +56,19 @@ button {
 button:hover {
     color: white !important;
     font-weight: 700 !important;
-    letter-spacing: 3px;
     background: #B81F77;
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
     transition: all 0.3s ease 0s;
 }
 
-.food {
+.foodlist {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.foodlist__single {
     padding: 1rem;
-    border: 1px solid #B81F77;
 }
 
 

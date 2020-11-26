@@ -18,9 +18,6 @@ mongoose.connect(
     }
 );
 
-console.log('test');
-
-
 app.post("/insert", async (req, res) => {
     const foodName = req.body.foodName;
     const days = req.body.days;
@@ -46,6 +43,28 @@ app.get("/read", async (req, res) => {
 
         res.send(result);
     });
+});
+
+app.put("/update", async (req, res) => {
+    const newFoodName = req.body.newFoodName;
+    const id = req.body.id;
+
+    try {
+        await FoodModel.findById(id, (err, updatedFood) => {
+            updatedFood.foodName = newFoodName;
+            updatedFood.save();
+            res.send("update");
+        });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.delete("/delete/:id", async (req, res) => {
+    const id = req.params.id;
+
+    await FoodModel.findByIdAndRemove(id).exec();
+    res.send("deleted");
 });
 
 app.listen(3001, () => {
