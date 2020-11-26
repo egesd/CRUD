@@ -3,71 +3,81 @@ import Axios from "axios";
 import "./App.css";
 
 function App() {
-    const [foodName, setFoodName] = useState("");
-    const [days, setDays] = useState(0);
-    const [newFoodName, setNewFoodName] = useState("");
-    const [foodList, setFoodList] = useState([]);
+    const [itemName, setItemName] = useState(0);
+    const [itemDescription, setItemDescription] = useState("");
+    const [newItemName, setNewItemName] = useState("");
+    const [bucketList, setBucketList] = useState([]);
 
     useEffect(() => {
         Axios.get("http://localhost:3001/read").then((response) => {
-            setFoodList(response.data);
+            setBucketList(response.data);
         });
     });
 
     const addToList = () => {
         Axios.post("http://localhost:3001/insert", {
-            foodName: foodName,
-            days: days,
+            itemName: itemName,
+            itemDescription: itemDescription,
         });
     };
 
     const updateFood = (id) => {
-        Axios.put('http://localhost:3001/update', {id : id, newFoodName: newFoodName})
-    }
+        Axios.put("http://localhost:3001/update", {
+            id: id,
+            newItemName: newItemName,
+        });
+    };
 
     const deleteFood = (id) => {
-        Axios.delete(`http://localhost:3001/delete/${id}`)
-    }
+        Axios.delete(`http://localhost:3001/delete/${id}`);
+    };
 
     return (
         <div className="App">
-            <h1> CRUD App with MERN</h1>
+            <div className="App__Input">
+                <label>Name:</label>
+                <input
+                    type="text"
+                    onChange={(event) => {
+                        setItemName(event.target.value);
+                    }}
+                ></input>
 
-            <label>Food Name:</label>
-            <input
-                type="text"
-                onChange={(event) => {
-                    setFoodName(event.target.value);
-                }}
-            ></input>
-
-            <label>Days Since You Ate It</label>
-            <input
-                type="number"
-                onChange={(event) => {
-                    setDays(event.target.value);
-                }}
-            ></input>
-            <button onClick={addToList}>Add To List</button>
-
-            <h1>Food list</h1>
-            <div className="foodlist">
-            {foodList.map((val, key) => {
-                return (
-                    <div key={key} className="foodlist__single">
-                        <h1> {val.foodName}</h1> <h1> {val.daysSinceIAte}</h1>
-                        <input
-                            type="text"
-                            placeholder="New Food Name..."
-                            onChange={(event) => {
-                                setNewFoodName(event.target.value);
-                            }}
-                        />
-                        <button onClick={() => updateFood(val._id)}>Update</button>
-                        <button onClick={() => deleteFood(val._id)}>Delete</button>
-                    </div>
-                );
-            })}
+                <label>Description</label>
+                <input
+                    type="text"
+                    onChange={(event) => {
+                        setItemDescription(event.target.value);
+                    }}
+                ></input>
+                <button onClick={addToList}>Add To List</button>
+            </div>
+            <div className="App__List">
+                <div className="App__List__Wrapper">
+                    {bucketList.map((val, key) => {
+                        return (
+                            <div key={key} className="App__List__Single">
+                                <h1> {val.itemName}</h1>
+                                <h3> {val.itemDescription}</h3>
+                                <input
+                                    type="text"
+                                    placeholder="New Name..."
+                                    onChange={(event) => {
+                                        setNewItemName(event.target.value);
+                                    }}
+                                />
+                                <div className="App__List__Single__Buttons">
+                                    <button onClick={() => updateFood(val._id)}>
+                                        Update
+                                    </button>
+                                    <button onClick={() => deleteFood(val._id)}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
