@@ -23,14 +23,14 @@ function App() {
         });
     };
 
-    const updateFood = (id) => {
+    const updateListItem = (id) => {
         Axios.put("http://localhost:3001/update", {
             id: id,
             newItemName: newItemName,
         });
     };
 
-    const deleteFood = (id) => {
+    const deleteListItem = (id) => {
         Axios.delete(`http://localhost:3001/delete/${id}`);
     };
 
@@ -75,12 +75,12 @@ function App() {
                                     />
                                     <div className="App__List__Single__Buttons">
                                         <button
-                                            onClick={() => updateFood(val._id)}
+                                            onClick={() => updateListItem(val._id)}
                                         >
                                             Update
                                         </button>
                                         <button
-                                            onClick={() => deleteFood(val._id)}
+                                            onClick={() => deleteListItem(val._id)}
                                         >
                                             Delete
                                         </button>
